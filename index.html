@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie Seu Site Incrível Hoje!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(26, 26, 26, 0.9);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1em;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3') no-repeat center center/cover;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: #ff4b2b;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .benefits h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-item {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-item i {
+            font-size: 2.5em;
+            color: #ff4b2b;
+            margin-bottom: 20px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .price-box {
+            background: #2c2c2c;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .price-box h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .price-box p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .price-box .old-price {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .faq h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            max-width: 700px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .faq-item h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ff4b2b;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav">
+            <div class="logo">GENESEEZ</div>
+            <div>
+                <a href="#benefits">Benefícios</a>
+                <a href="#pricing">Preço</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Crie um Site Incrível e Aumente Suas Vendas!</h1>
+            <p>Design personalizado, responsivo e com animações incríveis</p>
+            <a href="#pricing" class="cta-button">Quero Meu Site Agora!</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container animate-on-scroll">
+            <h2>O que Você Recebe?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Design Personalizado</h3>
+                    <p>100% focado em conversão e na sua marca.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Site Responsivo</h3>
+                    <p>Perfeito em celular, tablet e desktop.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-share-alt"></i>
+                    <h3>Integração com Redes</h3>
+                    <p>Conecte WhatsApp, Instagram e mais.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-gift"></i>
+                    <h3>Bônus Exclusivo</h3>
+                    <p>5 artes personalizadas para Instagram.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container animate-on-scroll">
+            <h2>Preço Promocional</h2>
+            <div class="price-box">
+                <h3>De R$997 por apenas</h3>
+                <p>R$397 à vista <br> ou 3x de R$147</p>
+                <p><small>Oferta válida para os 5 primeiros clientes desta semana!</small></p>
+                <a href="https://wa.me/558391427149" class="cta-button">Garantir Minha Vaga!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container animate-on-scroll">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <h3>Quanto tempo leva para o site ficar pronto?</h3>
+                <p>Entrega em até 7 dias úteis.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Vocês oferecem suporte?</h3>
+                <p>Sim, 30 dias de suporte grátis!</p>
+            </div>
+            <div class="faq-item">
+                <h3>Posso integrar meu WhatsApp?</h3>
+                <p>Sim, integramos WhatsApp, Instagram e outras redes sociais.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GENESEEZ. Todos os direitos reservados.</p>
+            <p>Entre em contato: <a href="https://wa.me/558391427149">WhatsApp</a></p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Scroll Animation
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Sticky Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
